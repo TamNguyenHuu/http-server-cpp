@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.cdm": "yaml",
+        "filesystem": "cpp",
+        "iostream": "cpp"
+    }
+}

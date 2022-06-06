@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/huutam1991/Dev/http-server-cpp'
+make: Leaving directory '/home/huutam1991/Dev/http-server-cpp'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
