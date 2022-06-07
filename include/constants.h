@@ -2,16 +2,23 @@
 #define CONSTANTS_H
 
 #include <unordered_map>
+#include <sys/epoll.h>
+#include <netinet/in.h>
 
 #define PORT 8080
 #define DIR_PATH "web_data" // the folder that contains the website's data
 
 #define BACKLOG_SOCKET 5 // number of connections
+#define BACKLOG_EPOLL 10 // number of epoll events
 #define BUFFER_SIZE 2048 // size of buffer for reading request data
 
 const std::string LINE_ENDING = "\r\n";
 const std::string HTTP_VERSION = "HTTP/1.1";
 const std::string NOT_FOUND_ERROR_MESSAGE = "The given document couldn't be found";
+
+typedef struct sockaddr_in sockaddr_in;
+typedef struct sockaddr sockaddr;
+typedef struct epoll_event epoll_event;
 
 enum class RequestMethod
 {

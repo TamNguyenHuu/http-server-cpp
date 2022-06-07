@@ -27,7 +27,8 @@ void HttpRequest::deserialize(const std::string& content)
     // Get URL
     size_t end_of_method_pos = content.find_first_of(' ', 0);
     size_t end_of_url_pos = content.find_first_of(' ', end_of_method_pos + 1);
-    if (end_of_url_pos == std::string::npos) {
+    if (end_of_url_pos == std::string::npos)
+    {
         std::cout << "No URL substring found" << std::endl;
         exit(EXIT_FAILURE);
     }
