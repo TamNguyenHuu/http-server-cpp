@@ -7,6 +7,7 @@
 
 #include "../include/constants.h"
 #include "../include/http_server.h"
+#include "../include/request/http_request.h"
 
 typedef struct sockaddr_in sockaddr_in;
 typedef struct sockaddr sockaddr;
@@ -84,4 +85,9 @@ void HttpServer::start()
     }
 
     std::cout << "Request content = " << buffer << std::endl;
+
+    HttpRequest* request = HttpRequest::CreateNewHttpRequest(buffer, m_dir_path);
+    std::string response = request->GetResponse();
+
+    write(client_fd, response.c_str(), response.size());
 }
