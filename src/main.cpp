@@ -13,5 +13,7 @@ int main(int argc, char **argv) {
     HttpServer server(PORT, DIR_PATH);
     server.start();
 
+    std::cout << "Main exit" << std::endl;
+
     return EXIT_SUCCESS;
 }

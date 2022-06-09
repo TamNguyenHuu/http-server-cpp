@@ -15,6 +15,7 @@
                 "-I/usr/local/include",
                 "-I/usr/include",
                 "-L/usr/local/lib",
+				"-pthread",
                 "-o",
                 "${workspaceFolder}/http_server.out"
 			],

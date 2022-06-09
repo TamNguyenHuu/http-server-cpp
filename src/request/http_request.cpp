@@ -49,11 +49,12 @@ HttpRequest* HttpRequest::CreateNewHttpRequest(const std::string& content, const
 {
     // Get String method of request
     size_t end_of_method_pos = content.find_first_of(' ', 0);
-    std::string request_method_str = content.substr(0, end_of_method_pos);
+    std::cout << "Content = " << content << std::endl;
     if (end_of_method_pos == std::string::npos) {
         std::cout << "No HTTP-Method substring found" << std::endl;
         exit(EXIT_FAILURE);
     }
+    std::string request_method_str = content.substr(0, end_of_method_pos);
 
     // Get Enum method of request
     auto method_it = request_method_map.find(request_method_str);

@@ -13,6 +13,8 @@
 HttpServer::HttpServer(int port, std::string dir_path) : m_port(port), m_dir_path(dir_path)
 {
     init_socket();
+    m_epoll       = new EPollWrapper(m_server_fd);
+    m_thread_pool = new ThreadPool(NUMBER_OF_THREADS);
 }
 
 HttpServer::~HttpServer()
@@ -64,11 +66,13 @@ void HttpServer::init_socket()
 
 void HttpServer::start()
 {
-    m_epoll = new EPollWrapper(m_server_fd);
     m_epoll->start_waitting
     (
         [&](){ return accept_new_connection(); },
-        [&](int client_fd){ return handle_client_request(client_fd); }
+        [&](int client_fd)
+        {
+            handle_client_request(client_fd);
+        }
     );
 }
 
@@ -90,7 +94,7 @@ int HttpServer::accept_new_connection()
 
 void HttpServer::handle_client_request(int client_fd)
 {
-    char buffer[BUFFER_SIZE] = {0};
+    char* buffer = new char[BUFFER_SIZE];
 
     if (read(client_fd, buffer, BUFFER_SIZE) == 0)
     {
@@ -100,8 +104,12 @@ void HttpServer::handle_client_request(int client_fd)
         return;
     }
 
-    HttpRequest* request = HttpRequest::CreateNewHttpRequest(buffer, m_dir_path);
-    std::string response = request->GetResponse();
+    m_thread_pool->execute_function([this, buffer, client_fd]()
+    {
+        HttpRequest* request = HttpRequest::CreateNewHttpRequest(buffer, m_dir_path);
+        std::string response = request->GetResponse();
+        write(client_fd, response.c_str(), response.size());
 
-    write(client_fd, response.c_str(), response.size());
+        delete buffer;
+    });
 }

@@ -8,9 +8,10 @@
 #define PORT 8080
 #define DIR_PATH "web_data" // the folder that contains the website's data
 
-#define BACKLOG_SOCKET 5 // number of connections
-#define BACKLOG_EPOLL 10 // number of epoll events
-#define BUFFER_SIZE 2048 // size of buffer for reading request data
+#define BACKLOG_SOCKET 5      // number of connections
+#define BACKLOG_EPOLL 10      // number of epoll events
+#define BUFFER_SIZE 2048      // size of buffer for reading request data
+#define NUMBER_OF_THREADS 100 // number of threads
 
 const std::string LINE_ENDING = "\r\n";
 const std::string HTTP_VERSION = "HTTP/1.1";

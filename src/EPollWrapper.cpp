@@ -86,6 +86,8 @@ void EPollWrapper::start_waitting(std::function<int()> accept_new_connection, st
             }
         }
     }
+
+    int tam = 1;
 }
 
 int EPollWrapper::add_client_fd(int client_fd)
