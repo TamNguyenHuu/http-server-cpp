@@ -24,6 +24,9 @@ HttpServer::~HttpServer()
         shutdown(m_server_fd, SHUT_RDWR);
         std::cout << "Http server is closed" << std::endl;
     }
+
+    delete m_epoll;
+    delete m_thread_pool;
 }
 
 void HttpServer::init_socket()
@@ -110,6 +113,7 @@ void HttpServer::handle_client_request(int client_fd)
         std::string response = request->GetResponse();
         write(client_fd, response.c_str(), response.size());
 
+        delete request;
         delete buffer;
     });
 }

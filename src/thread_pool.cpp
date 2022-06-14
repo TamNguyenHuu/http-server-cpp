@@ -13,6 +13,7 @@ ThreadPool::ThreadPool(int n_threads) : m_thread_list(n_threads)
 
 ThreadPool::~ThreadPool()
 {
+    shut_down();
 }
 
 std::function<void()> ThreadPool::get_function()
