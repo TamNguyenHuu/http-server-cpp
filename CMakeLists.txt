@@ -12,5 +12,5 @@ set(
     SOURCES src/main.cpp src/epoll_wrapper.cpp src/http_server.cpp src/thread_pool.cpp src/thread_worker.cpp src/request/http_request_get.cpp src/request/http_request_post.cpp src/request/http_request.cpp
 )
 
-add_executable(http_server.out ${HEADERS} ${SOURCES})
-target_link_libraries(http_server.out)
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
+target_link_libraries(${PROJECT_NAME})

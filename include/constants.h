@@ -5,7 +5,7 @@
 #include <sys/epoll.h>
 #include <netinet/in.h>
 
-#define PORT 8080
+#define PORT 80
 #define DIR_PATH "web_data" // the folder that contains the website's data
 
 #define BACKLOG_SOCKET 5      // number of connections

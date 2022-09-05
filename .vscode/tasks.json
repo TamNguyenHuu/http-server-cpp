@@ -17,7 +17,7 @@
                 "-L/usr/local/lib",
 				"-pthread",
                 "-o",
-                "${workspaceFolder}/http_server.out"
+                "${workspaceFolder}/http_server_cpp"
 			],
 			"options": {
 				"cwd": "${fileDirname}"
